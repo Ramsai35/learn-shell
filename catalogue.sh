@@ -1,7 +1,7 @@
 set -e
 script_location=$(pwd)
 
-echo -e "/e[31m RepoUpdatation/e[0m"
+echo -e "\e[31m RepoUpdatation\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 yum install nodejs -y
 #useradd roboshop
