@@ -1,4 +1,4 @@
-source=common.sh
+source common.sh
 
 echo -e "\e[35m RepoUpdatation\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG}
