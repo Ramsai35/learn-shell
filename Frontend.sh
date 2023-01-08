@@ -1,36 +1,36 @@
 source common.sh
-echo -e '\e[32m install nginx\e[0m'
+print_head "install Nginx"
 yum install nginx -y &>>${LOG}
 status_check
 
-echo -e '\e[32m enable nginx\e[0m'
+print_head "enable Nginx"
 systemctl enable nginx &>>${LOG}
 status_check
 
-echo -e '\e[32m start nginx\e[0m'
+print_head "start Nginx"
 systemctl start nginx &>>${LOG}
 status_check
 
-echo -e '\e[32m cleanup nginx\e[0m'
+print_head "removing file"
 rm -rf /usr/share/nginx/html/* &>>${LOG}
 status_check
 
-echo -e '\e[32m downloading webcontent\e[0m'
+print_head "Downloading webcontent"
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip &>>${LOG}
 status_check
 
-echo -e '\e[32m downloading webcontent\e[0m'
+print_head "Downloading web content"
 cd /usr/share/nginx/html &>>${LOG}
 status_check
 
-echo -e '\e[32m unzip webcontent\e[0m'
+print_head "UNZIP"
 unzip /tmp/frontend.zip &>>${LOG}
 status_check
 
-echo -e '\e[32m changing direction\e[0m'
+print_head "changing dir"
 cp ${script_location}/files/roboshop.conf /etc/nginx/default.d/roboshop.conf &>>${LOG}
 status_check
 
-echo -e '\e[32m restart nginx\e[0m'
+print_head "Restart Nginx"
 systemctl restart nginx &>>${LOG}
 status_check
