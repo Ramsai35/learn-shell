@@ -3,7 +3,12 @@ LOG=/tmp/roboshop.log
 
 echo -e '\e[32m install nginx\e[0m'
 yum install nginx -y &>>${LOG}
-echo $?
+if [ $? -eq 0 ];
+   then
+      echo success
+   else
+      echo Fail
+
 
 echo -e '\e[32m enable nginx\e[0m'
 systemctl enable nginx &>>${LOG}
