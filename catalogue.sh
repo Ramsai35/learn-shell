@@ -20,7 +20,7 @@ if [ $? -eq 0 ];
      echo FAIL
  fi
 
-#useradd roboshop
+useradd roboshop &>>${LOG}
 
 echo -e "\e[35m Directory creation\e[0m"
 mkdir -p /app &>>${LOG}
