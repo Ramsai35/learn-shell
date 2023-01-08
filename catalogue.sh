@@ -100,7 +100,7 @@ if [ $? -eq 0 ];
 echo -e "\e[35m Schema-load\e[0m"
 cp ${script_location}/files/mongo.conf /etc/yum.repos.d/mongo.repo &>>${LOG}
 yum install mongodb-org-shell -y &>>${LOG}
-mongo --host localhost </app/schema/catalogue.js
+mongo --host localhost </app/schema/catalogue.js &>>${LOG}
 if [ $? -eq 0 ];
    then
      echo SUCCESS
