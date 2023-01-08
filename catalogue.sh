@@ -21,6 +21,12 @@ if [ $? -eq 0 ];
  fi
 
 useradd roboshop &>>${LOG}
+if [ $? -eq 0 ];
+   then
+     echo SUCCESS
+   else
+     echo FAIL
+ fi
 
 echo -e "\e[35m Directory creation\e[0m"
 mkdir -p /app &>>${LOG}
