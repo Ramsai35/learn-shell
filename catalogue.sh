@@ -10,26 +10,101 @@ if [ $? -eq 0 ];
    else
      echo FAIL
  fi
-yum install nodejs -y
+
+ echo -e "\e[35m Installation NodeJS\e[0m"
+yum install nodejs -y &>>${LOG}
+if [ $? -eq 0 ];
+   then
+     echo SUCCESS
+   else
+     echo FAIL
+ fi
+
 #useradd roboshop
-mkdir -p /app
 
+echo -e "\e[35m Directory creation\e[0m"
+mkdir -p /app &>>${LOG}
+if [ $? -eq 0 ];
+   then
+     echo SUCCESS
+   else
+     echo FAIL
+ fi
 
-curl -L -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
-rm -rf /app/*
-cd /app/
-unzip /tmp/catalogue.zip
+echo -e "\e[35m Downloading webcontent\e[0m"
+curl -L -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>${LOG}
+if [ $? -eq 0 ];
+   then
+     echo SUCCESS
+   else
+     echo FAIL
+ fi
 
-npm install
+echo -e "\e[35m cleanup\e[0m"
+rm -rf /app/* &>>${LOG}
+if [ $? -eq 0 ];
+   then
+     echo SUCCESS
+   else
+     echo FAIL
+ fi
 
-cp ${script_location}/files/catalogue.conf /etc/systemd/system/catalogue.service
+echo -e "\e[35m Change directory\e[0m"
+cd /app/ &>>${LOG}
+if [ $? -eq 0 ];
+   then
+     echo SUCCESS
+   else
+     echo FAIL
+ fi
 
-systemctl daemon-reload
+echo -e "\e[35m Unzip\e[0m"
+unzip /tmp/catalogue.zip &>>${LOG}
+if [ $? -eq 0 ];
+   then
+     echo SUCCESS
+   else
+     echo FAIL
+ fi
 
-systemctl enable catalogue
-systemctl start catalogue
+echo -e "\e[35m NPM installation\e[0m"
+npm install &>>${LOG}
+if [ $? -eq 0 ];
+   then
+     echo SUCCESS
+   else
+     echo FAIL
+ fi
 
-cp ${script_location}/files/mongo.conf /etc/yum.repos.d/mongo.repo
-yum install mongodb-org-shell -y
+cp ${script_location}/files/catalogue.conf /etc/systemd/system/catalogue.service &>>${LOG}
+
+echo -e "\e[35m systemd-reload\e[0m"
+systemctl daemon-reload &>>${LOG}
+if [ $? -eq 0 ];
+   then
+     echo SUCCESS
+   else
+     echo FAIL
+ fi
+
+echo -e "\e[35m starting Catalogue\e[0m"
+systemctl enable catalogue &>>${LOG}
+systemctl start catalogue &>>${LOG}
+if [ $? -eq 0 ];
+   then
+     echo SUCCESS
+   else
+     echo FAIL
+ fi
+
+echo -e "\e[35m Schema-load\e[0m"
+cp ${script_location}/files/mongo.conf /etc/yum.repos.d/mongo.repo &>>${LOG}
+yum install mongodb-org-shell -y &>>${LOG}
 mongo --host localhost </app/schema/catalogue.js
+if [ $? -eq 0 ];
+   then
+     echo SUCCESS
+   else
+     echo FAIL
+ fi
 
