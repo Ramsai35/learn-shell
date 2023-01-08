@@ -2,9 +2,9 @@ set -e
 script_location=$(pwd)
 LOG=/tmp/roboshop.log
 
-echo -e "\e[34m RepoUpdatation\e[0m"
+echo -e "\e[35m RepoUpdatation\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG}
-if [ $? -eq 0];
+if [ $? -eq 0 ];
    then
      echo SUCCESS
    else
