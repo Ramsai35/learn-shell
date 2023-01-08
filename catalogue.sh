@@ -18,6 +18,7 @@ if [ $? -eq 0 ]; then
      echo FAIL
 fi
 
+echo -e "\e[35m useradd\e[0m"
 useradd roboshop &>>${LOG}
 if [ $? -eq 0 ]; then
      echo SUCCESS
