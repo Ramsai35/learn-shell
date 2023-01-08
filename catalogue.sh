@@ -1,4 +1,3 @@
-set -e
 script_location=$(pwd)
 LOG=/tmp/roboshop.log
 
@@ -22,9 +21,9 @@ echo -e "\e[35m Installation NodeJS\e[0m"
 yum install nodejs -y &>>${LOG}
 status_check
 
-#echo -e "\e[35m useradd\e[0m"
-#useradd roboshop &>>${LOG}
-#status_check
+echo -e "\e[35m useradd\e[0m"
+useradd roboshop &>>${LOG}
+status_check
 
 echo -e "\e[35m Directory creation\e[0m"
 mkdir -p /app &>>${LOG}
