@@ -62,7 +62,13 @@ status_check
 
 echo -e "\e[35m Schema-load\e[0m"
 cp ${script_location}/files/mongo.conf /etc/yum.repos.d/mongo.repo &>>${LOG}
+status_check
+
+echo -e "\e[35m Shell Install\e[0m"
 yum install mongodb-org-shell -y &>>${LOG}
+status_check
+
+echo -e "\e[35m hostsetup\e[0m"
 mongo --host localhost </app/schema/catalogue.js &>>${LOG}
 status_check
 
