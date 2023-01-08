@@ -4,29 +4,26 @@ LOG=/tmp/roboshop.log
 
 echo -e "\e[35m RepoUpdatation\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG}
-if [ $? -eq 0 ];
-   then
+if [ $? -eq 0 ]; then
      echo SUCCESS
    else
      echo FAIL
- fi
+fi
 
  echo -e "\e[35m Installation NodeJS\e[0m"
 yum install nodejs -y &>>${LOG}
-if [ $? -eq 0 ];
-   then
+if [ $? -eq 0 ]; then
      echo SUCCESS
    else
      echo FAIL
- fi
+fi
 
 useradd roboshop &>>${LOG}
-if [ $? -eq 0 ];
-   then
+if [ $? -eq 0 ]; then
      echo SUCCESS
    else
      echo FAIL
- fi
+fi
 
 echo -e "\e[35m Directory creation\e[0m"
 mkdir -p /app &>>${LOG}
