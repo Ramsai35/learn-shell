@@ -23,7 +23,7 @@ useradd roboshop &>>${LOG}
 if [ $? -eq 0 ]; then
      echo SUCCESS
 else
-     echo FAILure
+      echo Failure
 fi
 
 echo -e "\e[35m Directory creation\e[0m"
