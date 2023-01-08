@@ -8,7 +8,7 @@ if [ $? -eq 0 ];
       echo success
    else
       echo Fail
-
+fi
 
 echo -e '\e[32m enable nginx\e[0m'
 systemctl enable nginx &>>${LOG}
